@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { PHOTO_CATEGORY_LABEL } from '@/lib/site-config';
+
+interface Props {
+  gallery: CollectionEntry<'photography'>;
+}
+
+const { gallery } = Astro.props;
+const categoryLabel = PHOTO_CATEGORY_LABEL[gallery.data.category] ?? gallery.data.category;
+---
+
+<a
+  href={`/photography/${gallery.data.slug}`}
+  class="group flex flex-col overflow-hidden rounded-xl border border-border bg-white transition-all hover:-translate-y-0.5 hover:shadow-lg dark:border-[#26282c] dark:bg-[#15171a]"
+>
+  <div class="aspect-[4/5] overflow-hidden bg-grey1 dark:bg-[#101114]">
+    <img
+      src={gallery.data.cover}
+      alt={gallery.data.title}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  </div>
+  <div class="flex flex-1 flex-col p-5">
+    <div class="flex items-center justify-between gap-2">
+      <span class="font-mono text-[11px] uppercase tracking-wider text-amber">{categoryLabel}</span>
+      <span class="font-mono text-xs text-graphite dark:text-nighttext/40">{gallery.data.date}</span>
+    </div>
+    <h3 class="mt-2 text-lg font-semibold group-hover:text-accent dark:group-hover:text-[#7d9cff]">
+      {gallery.data.title}
+    </h3>
+    <p class="mt-2 line-clamp-2 text-sm text-graphite dark:text-nighttext/60">
+      {gallery.data.summary}
+    </p>
+  </div>
+</a>
