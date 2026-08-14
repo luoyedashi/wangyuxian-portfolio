@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#fafaf8"/>
+  <rect x="0" y="0" width="10" height="500" fill="#002FA7"/>
+  <rect x="0" y="0" width="800" height="6" fill="#E8762C"/>
+  <g transform="translate(310,110)">
+    <rect x="0" y="0" width="180" height="140" rx="10" fill="none" stroke="#002FA7" stroke-width="6"/>
+    <circle cx="42" cy="42" r="18" fill="#E8762C"/>
+    <path d="M8 132 L60 82 L96 112 L132 70 L172 132 Z" fill="#d4d4d2"/>
+  </g>
+  <text x="400" y="330" font-family="'Noto Sans SC', sans-serif" font-size="40" font-weight="700" fill="#0a0a0a" text-anchor="middle">界面截图整理中</text>
+  <text x="400" y="380" font-family="'Noto Sans SC', sans-serif" font-size="22" fill="#525252" text-anchor="middle">素材脱敏后补充</text>
+  <text x="40" y="460" font-family="JetBrains Mono, monospace" font-size="18" fill="#737373">WANG YUXIAN · PORTFOLIO</text>
+</svg>
