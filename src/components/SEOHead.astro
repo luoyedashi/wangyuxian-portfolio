@@ -1,0 +1,37 @@
+---
+import { SITE } from '@/lib/site-config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  type?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  ogImage = SITE.ogImage,
+  type = 'website',
+} = Astro.props;
+
+const baseUrl = SITE.url.replace(/\/$/, '');
+const canonical = `${baseUrl}${Astro.url.pathname}`;
+const fullOg = `${baseUrl}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullOg} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content="zh_CN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullOg} />
+<meta name="author" content="王钰贤" />
+<meta name="robots" content="index, follow" />
