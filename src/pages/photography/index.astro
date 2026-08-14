@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PhotoCard from '@/components/PhotoCard.astro';
+
+const galleries = (await getCollection('photography')).filter((p) => p.data.privacy.approved);
+---
+
+<BaseLayout title="摄影画廊 | 王钰贤" description="王钰贤的摄影作品：校园、人像与光影。">
+  <section class="mx-auto max-w-6xl px-5 py-16 md:py-20">
+    <p class="font-mono text-xs uppercase tracking-[0.3em] text-amber">Photography</p>
+    <h1 class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">摄影画廊</h1>
+    <p class="mt-4 max-w-2xl text-graphite dark:text-nighttext/60">
+      我拍校园、拍人、拍光影。摄影是我「只留一样也会留下」的事。
+    </p>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {galleries.map((g) => <PhotoCard gallery={g} />)}
+    </div>
+  </section>
+</BaseLayout>
