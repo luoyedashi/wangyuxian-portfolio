@@ -1,0 +1,15 @@
+---
+import { TIMELINE } from '@/lib/site-config';
+---
+
+<ol class="relative border-l border-border pl-6 dark:border-[#26282c]">
+  {
+    TIMELINE.map((item) => (
+      <li class="relative mb-8">
+        <span class="absolute -left-[31px] top-1 h-2.5 w-2.5 rounded-full bg-accent dark:bg-[#7d9cff]"></span>
+        <p class="font-mono text-xs uppercase tracking-wider text-amber">{item.year}</p>
+        <p class="mt-1 font-medium">{item.text}</p>
+      </li>
+    ))
+  }
+</ol>
