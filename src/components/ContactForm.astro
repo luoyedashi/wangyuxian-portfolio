@@ -1,0 +1,40 @@
+---
+import { SITE } from '@/lib/site-config';
+---
+
+<form
+  action={`mailto:${SITE.email}`}
+  method="get"
+  enctype="text/plain"
+  class="flex flex-col gap-4 rounded-xl border border-border bg-white p-6 dark:border-[#26282c] dark:bg-[#15171a]"
+>
+  <div>
+    <label for="contact-subject" class="mb-1 block text-sm font-medium">主题</label>
+    <input
+      id="contact-subject"
+      name="subject"
+      type="text"
+      class="w-full rounded-lg border border-border bg-paper px-3 py-2 text-sm outline-none focus:border-accent dark:border-[#26282c] dark:bg-night"
+      placeholder="例如：校园活动策划合作"
+    />
+  </div>
+  <div>
+    <label for="contact-body" class="mb-1 block text-sm font-medium">内容</label>
+    <textarea
+      id="contact-body"
+      name="body"
+      rows="5"
+      class="w-full rounded-lg border border-border bg-paper px-3 py-2 text-sm outline-none focus:border-accent dark:border-[#26282c] dark:bg-night"
+      placeholder="简单介绍一下你想聊的事……"
+    ></textarea>
+  </div>
+  <button
+    type="submit"
+    class="self-start rounded-full bg-ink px-6 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-accent dark:bg-nighttext dark:text-night dark:hover:bg-[#7d9cff]"
+  >
+    通过邮件发送
+  </button>
+  <p class="text-xs text-graphite dark:text-nighttext/40">
+    表单使用 mailto 直接唤起邮件客户端，不会在服务器存储任何信息。
+  </p>
+</form>
