@@ -1,0 +1,116 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TagList from '@/components/TagList.astro';
+import { CATEGORY_LABEL } from '@/lib/site-config';
+
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+  return works
+    .filter((w) => w.data.status === 'public' && w.data.privacy.approved)
+    .map((w) => ({
+      params: { slug: w.data.slug },
+      props: { work: w },
+    }));
+}
+
+const { work } = Astro.props;
+const { Content } = await render(work);
+const allWorks = (await getCollection('works'))
+  .filter((w) => w.data.status === 'public' && w.data.privacy.approved)
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+const currentIndex = allWorks.findIndex((w) => w.data.slug === work.data.slug);
+const nextWork = allWorks[(currentIndex + 1) % allWorks.length];
+const categoryLabel = CATEGORY_LABEL[work.data.category] ?? work.data.category;
+---
+
+<BaseLayout title={`${work.data.title} | 王钰贤作品集`} description={work.data.summary} ogImage={work.data.cover}>
+  <article class="mx-auto max-w-6xl px-5 py-12">
+    <div class="overflow-hidden rounded-2xl border border-border dark:border-[#26282c]">
+      <img src={work.data.cover} alt={work.data.title} class="aspect-video w-full object-cover" />
+    </div>
+
+    <div class="mx-auto max-w-3xl">
+      <nav class="mt-8 text-sm text-graphite dark:text-nighttext/50">
+        <a href="/works" class="hover:text-accent dark:hover:text-[#7d9cff]">作品集</a>
+        <span class="mx-2">/</span>
+        <a
+          href={`/works/category/${work.data.category}`}
+          class="hover:text-accent dark:hover:text-[#7d9cff]"
+        >
+          {categoryLabel}
+        </a>
+      </nav>
+      <h1 class="mt-4 text-3xl font-bold tracking-tight md:text-4xl">{work.data.title}</h1>
+      <div class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-graphite dark:text-nighttext/50">
+        <span>{work.data.date}</span>
+        {work.data.role && <span>角色：{work.data.role}</span>}
+      </div>
+      <p class="mt-6 text-xl font-medium leading-relaxed">{work.data.summary}</p>
+
+      {
+        work.data.metrics.length > 0 && (
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            {work.data.metrics.map((m) => (
+              <div class="rounded-xl border border-border bg-grey1 p-4 text-center dark:border-[#26282c] dark:bg-[#101114]">
+                <p class="text-lg font-bold text-accent dark:text-[#7d9cff]">{m.value}</p>
+                <p class="mt-1 text-xs text-graphite dark:text-nighttext/50">{m.label}</p>
+              </div>
+            ))}
+          </div>
+        )
+      }
+
+      <div class="prose-body mt-10 border-t border-border pt-8 dark:border-[#26282c]">
+        <Content />
+      </div>
+
+      {
+        work.data.tags.includes('界面截图待补') && (
+          <div class="mt-8 overflow-hidden rounded-xl border border-border bg-grey1 dark:border-[#26282c] dark:bg-[#101114]">
+            <img src="/images/og/placeholder-shot.svg" alt="界面截图整理中" class="w-full" loading="lazy" />
+          </div>
+        )
+      }
+
+      <div class="mt-10">
+        <TagList tags={work.data.tags} />
+      </div>
+
+      {
+        work.data.links.length > 0 && (
+          <div class="mt-10">
+            <h2 class="mb-3 text-lg font-semibold">材料链接</h2>
+            <div class="flex flex-wrap gap-3">
+              {work.data.links.map((link) => (
+                <a
+                  href={link.url}
+                  target={link.url.startsWith('http') ? '_blank' : undefined}
+                  rel={link.url.startsWith('http') ? 'noopener' : undefined}
+                  class="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent dark:border-[#26282c] dark:hover:border-[#7d9cff] dark:hover:text-[#7d9cff]"
+                >
+                  {link.label} ↗
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <div class="mt-14 border-t border-border pt-8 dark:border-[#26282c]">
+        <a
+          href={`/works/${nextWork.data.slug}`}
+          class="group flex items-center justify-between rounded-xl border border-border p-5 transition-colors hover:border-accent dark:border-[#26282c] dark:hover:border-[#7d9cff]"
+        >
+          <div>
+            <p class="font-mono text-xs uppercase tracking-widest text-graphite dark:text-nighttext/40">下一个作品</p>
+            <p class="mt-1 font-semibold group-hover:text-accent dark:group-hover:text-[#7d9cff]">
+              {nextWork.data.title}
+            </p>
+          </div>
+          <span class="text-xl">→</span>
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
