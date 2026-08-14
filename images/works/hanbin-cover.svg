@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#fafaf8"/>
+  <rect x="0" y="0" width="16" height="1000" fill="#002FA7"/>
+  <rect x="0" y="0" width="1600" height="8" fill="#E8762C"/>
+  <text x="120" y="150" font-family="JetBrains Mono, monospace" font-size="40" fill="#002FA7">10</text>
+  <text x="118" y="430" font-family="'Noto Sans SC', sans-serif" font-size="88" font-weight="700" fill="#0a0a0a">???? ? ????</text>
+  <text x="120" y="540" font-family="'Noto Sans SC', sans-serif" font-size="54" font-weight="400" fill="#525252">????????</text>
+  <text x="120" y="880" font-family="JetBrains Mono, monospace" font-size="28" fill="#737373">campus-leadership ? WANG YUXIAN</text>
+</svg>
