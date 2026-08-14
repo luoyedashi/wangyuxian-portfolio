@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#fafaf8"/>
+  <rect x="0" y="0" width="10" height="500" fill="#002FA7"/>
+  <rect x="0" y="0" width="800" height="6" fill="#E8762C"/>
+  <g transform="translate(340,120)">
+    <rect x="12" y="60" width="36" height="120" rx="18" fill="#002FA7"/>
+    <rect x="112" y="60" width="36" height="120" rx="18" fill="#002FA7"/>
+    <path d="M20 130 Q80 20 140 130" fill="none" stroke="#0a0a0a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M40 160 Q80 70 120 160" fill="none" stroke="#E8762C" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="340" font-family="'Noto Sans SC', sans-serif" font-size="40" font-weight="700" fill="#0a0a0a" text-anchor="middle">音频整理中</text>
+  <text x="400" y="390" font-family="'Noto Sans SC', sans-serif" font-size="22" fill="#525252" text-anchor="middle">节目录制完成后将在此播放</text>
+  <text x="40" y="460" font-family="JetBrains Mono, monospace" font-size="18" fill="#737373">WANG YUXIAN · VOICE</text>
+</svg>
