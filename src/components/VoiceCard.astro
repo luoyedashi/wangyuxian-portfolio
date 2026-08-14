@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  episode: CollectionEntry<'voice'>;
+}
+
+const { episode } = Astro.props;
+---
+
+<a
+  href={`/voice/${episode.data.slug}`}
+  class="group flex flex-col overflow-hidden rounded-xl border border-border bg-white transition-all hover:-translate-y-0.5 hover:shadow-lg dark:border-[#26282c] dark:bg-[#15171a]"
+>
+  <div class="aspect-video overflow-hidden bg-grey1 dark:bg-[#101114]">
+    <img
+      src={episode.data.cover}
+      alt={episode.data.title}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  </div>
+  <div class="flex flex-1 flex-col p-5">
+    <div class="flex items-center justify-between gap-2">
+      <span class="font-mono text-[11px] uppercase tracking-wider text-accent dark:text-[#7d9cff]">
+        {episode.data.program}
+      </span>
+      <span class="font-mono text-xs text-graphite dark:text-nighttext/40">{episode.data.date}</span>
+    </div>
+    <h3 class="mt-2 text-lg font-semibold leading-snug group-hover:text-accent dark:group-hover:text-[#7d9cff]">
+      {episode.data.title}
+    </h3>
+    <p class="mt-2 line-clamp-2 text-sm text-graphite dark:text-nighttext/60">
+      {episode.data.summary}
+    </p>
+  </div>
+</a>
